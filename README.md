@@ -9,13 +9,13 @@ Segue o diagram de stack:
 
 O diagrama mostra a arquitetura da aplicação da barbearia em produção, dividindo o projeto em camadas: usuário, front-end, API, banco de dados e GitHub.
 
-Primeiro, o usuário acessa o sistema pelo navegador usando a URL pública do front-end, como https://barbearia-web.vercel.app. Nessa camada, trafegam arquivos de interface: HTML, CSS e JavaScript. O HTML monta a estrutura da página, o CSS define o visual e o JavaScript executa as ações do sistema no navegador
+Primeiro, o usuário acessa o sistema pelo navegador usando a URL pública do front-end, como https://barbearia-web.vercel.app. Nessa camada, movem arquivos de interface: HTML, CSS e JavaScript. O HTML monta a estrutura da página, o CSS define o layout e o JavaScript executa as ações do sistema no navegador
 
-Depois que a tela carrega, o front-end precisa buscar ou enviar dados — clientes, serviços, barbeiros e agendamentos. Para isso, ele faz chamadas HTTP/HTTPS para a API hospedada, usando fetch ou outro método de requisição. Essas chamadas geralmente usam o formato JSON, que é leve, fácil de ler e muito usado na comunicação entre sistemas web
+Depois que a tela carrega, o front-end precisa buscar ou enviar dados — clientes, serviços, barbeiros e agendamentos. Para isso, ele faz chamadas HTTP/HTTPS para a API hospedada, usando fetch ou outro método de requisição. Essas chamadas usam o formato JSON
 
-A API, hospedada em um serviço como o Render, recebe essas requisições do front-end. Ela processa as regras de negócio do sistema. Por exemplo, quando o usuário cadastra um novo cliente, a API recebe os dados em JSON, valida as informações e decide o que será salvo no banco. A API foi feita com Node.js e Express, funcionando como a camada intermediária entre a interface e o banco de dados
+A API, hospedada na Render, recebe essas requisições do front-end. Ela processa as regras de negócio do sistema. 
 
-Quando a API precisa salvar, buscar, alterar ou excluir informações, ela se comunica com o banco de dados hospedado. Nesse caso, o banco pode estar na Aiven usando MySQL. Entre a API e o banco trafegam comandos SQL ou consultas feitas pelo Prisma/ORM. O banco armazena os dados principais do sistema: clientes, barbeiros, serviços e agendamentos
+Quando a API precisa salvar, buscar, alterar ou excluir informações, ela se comunica com o banco de dados hospedado. Nesse caso, o banco estar na Aiven usando MySQL. Entre a API e o banco movem consultas feitas pelo Prisma/ORM. O banco armazena os dados principais do sistema: clientes, barbeiros, serviços e agendamentos
 
 Depois de consultar o banco, os dados voltam para a API. Ela transforma a resposta em JSON e envia de volta para o front-end. O front-end recebe esse JSON e atualiza a interface para o usuário, mostrando as informações na tela — como tabelas, cards e formulários preenchidos
 
