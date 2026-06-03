@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbearia - Painel</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <section id="loginPage" class="login-page">
+    <form id="loginForm" class="login-card">
+      <h1>Barbearia</h1>
+      <p>Acesse o painel administrativo</p>
+
+      <div id="loginError" class="error hidden"></div>
+
+      <label>E-mail</label>
+      <input type="email" id="email" placeholder="Digite seu e-mail" required />
+
+      <label>Senha</label>
+      <input type="password" id="senha" placeholder="Digite sua senha" required />
+
+      <button type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <!-- SISTEMA -->
+  <div id="app" class="app hidden">
+    <aside class="sidebar">
+      <h2>Barbearia</h2>
+
+      <nav>
+        <button onclick="mostrarTela('dashboard')">Dashboard</button>
+        <button onclick="mostrarTela('clientes')">Clientes</button>
+        <button onclick="mostrarTela('servicos')">Serviços</button>
+        <button onclick="mostrarTela('barbeiros')">Barbeiros</button>
+        <button onclick="mostrarTela('agendamentos')">Agendamentos</button>
+      </nav>
+
+      <button class="logout" onclick="sair()">Sair</button>
+    </aside>
+
+    <main class="content">
+
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="page">
+        <h1>Dashboard</h1>
+
+        <div class="cards">
+          <div class="card">
+            <span>Clientes</span>
+            <strong id="totalClientes">0</strong>
+          </div>
+
+          <div class="card">
+            <span>Serviços</span>
+            <strong id="totalServicos">0</strong>
+          </div>
+
+          <div class="card">
+            <span>Barbeiros</span>
+            <strong id="totalBarbeiros">0</strong>
+          </div>
+
+          <div class="card">
+            <span>Agendamentos</span>
+            <strong id="totalAgendamentos">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLIENTES -->
+      <section id="clientes" class="page hidden">
+        <h1>Clientes</h1>
+
+        <form id="clienteForm" class="form-card">
+          <h2>Novo Cliente</h2>
+
+          <div class="form-grid">
+            <input id="clienteNome" placeholder="Nome" required />
+            <input id="clienteTelefone" placeholder="Telefone" required />
+            <input id="clienteEmail" placeholder="E-mail" />
+          </div>
+
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <div class="table-card">
+          <h2>Lista de Clientes</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="clientesTabela"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SERVIÇOS -->
+      <section id="servicos" class="page hidden">
+        <h1>Serviços</h1>
+
+        <form id="servicoForm" class="form-card">
+          <h2>Novo Serviço</h2>
+
+          <div class="form-grid">
+            <input id="servicoNome" placeholder="Nome do serviço" required />
+            <input id="servicoPreco" type="number" step="0.01" placeholder="Preço" required />
+            <input id="servicoDuracao" type="number" placeholder="Duração em minutos" required />
+          </div>
+
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <div class="table-card">
+          <h2>Lista de Serviços</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Serviço</th>
+                <th>Preço</th>
+                <th>Duração</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="servicosTabela"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- BARBEIROS -->
+      <section id="barbeiros" class="page hidden">
+        <h1>Barbeiros</h1>
+
+        <form id="barbeiroForm" class="form-card">
+          <h2>Novo Barbeiro</h2>
+
+          <div class="form-grid">
+            <input id="barbeiroNome" placeholder="Nome" required />
+            <input id="barbeiroTelefone" placeholder="Telefone" required />
+            <input id="barbeiroEspecialidade" placeholder="Especialidade" />
+          </div>
+
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <div class="table-card">
+          <h2>Lista de Barbeiros</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Especialidade</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="barbeirosTabela"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- AGENDAMENTOS -->
+      <section id="agendamentos" class="page hidden">
+        <h1>Agendamentos</h1>
+
+        <form id="agendamentoForm" class="form-card">
+          <h2>Novo Agendamento</h2>
+
+          <div class="form-grid">
+            <select id="agendamentoCliente" required>
+              <option value="">Selecione o cliente</option>
+            </select>
+
+            <select id="agendamentoBarbeiro" required>
+              <option value="">Selecione o barbeiro</option>
+            </select>
+
+            <select id="agendamentoServico" required>
+              <option value="">Selecione o serviço</option>
+            </select>
+
+            <input id="agendamentoData" type="date" required />
+            <input id="agendamentoHora" type="time" required />
+          </div>
+
+          <button type="submit">Agendar</button>
+        </form>
+
+        <div class="table-card">
+          <h2>Lista de Agendamentos</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Barbeiro</th>
+                <th>Serviço</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="agendamentosTabela"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
