@@ -69,8 +69,6 @@ No painel do Render, no caso da API, também aparece um novo deploy em andamento
 
 Durante esse processo, os painéis das plataformas mostram logs do deploy. Esses logs exibem etapas como download do repositório, instalação de dependências, execução de comandos, inicialização do servidor e possíveis erros. Isso ajuda a verificar se a nova versão foi publicada corretamente ou se ocorreu algum problema
 
-Portanto, o git push funciona como o início do processo de atualização em produção. O GitHub recebe a nova versão do código, e as plataformas de hospedagem conectadas a ele fazem o deploy automático do front-end ou da API, dependendo do repositório alterado
-
 
 4. O que é CI/CD e por que existe
 
